@@ -160,7 +160,10 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPEx01" path="/JSPEx01" reloadable="true" source="org.eclipse.jst.jee.server:JSPEx01"/></Host>
+      <Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPEx01" path="/JSPEx01" reloadable="true" source="org.eclipse.jst.jee.server:JSPEx01"/><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JDBCEx01" path="/JDBCEx01" reloadable="true" source="org.eclipse.jst.jee.server:JDBCEx01"/><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JDBCEx03" path="/JDBCEx02" reloadable="true" source="org.eclipse.jst.jee.server:JDBCEx03">
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb1" password="123456" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/sample" username="root"/>
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb2" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/project" username="project"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
