@@ -1,0 +1,52 @@
+환경 설정
+
+1.개발환경
+		window(mac) + jdk + apache-tomcat + eclispe(intellij)
+
+=> 배포
+		수동배포
+		자동배포
+
+2.서비스환경
+		Linux(unix) + jdk + apache-tomcat
+
+
+3.java 웹프로그램을 할 수 있는 방법
+1. Servlet	- class		1.
+2. jsp		- html 유사	2.
+
+4.웹프로그램 실행환경
+클라이언트							서버
+브라우저 				->  요청 -> 	(웹서버)+ WAS   <-> jsp/sevlet
+(요청, 렌더링)			<- HTML <-   
+
+5. JSP
+ -1. 확장자 *jsp
+ -2. 4가지 특수 기호를 사용해서 코딩 
+		<%@ -directive 	-jsp 페이지에 대한 설정
+			page
+				language
+				contentType
+				pageEncoding
+				import(※중요함)
+
+
+		<%! -decleartion	-멤버필드, 메서드선언(x)
+		<%  -scriptlet 	-java소스 (지역변수,제어문)
+		<%= expression 	-out.println 대치  
+
+
+JSP/ Server  	java ee
+jddbc 		jave se
+
+
+데이터베이스 풀링 - 미리 만들어 놓은 접속
+ tomcat 시작 - 풀링 -> JNDI  -> 프로그램에서 접근
+			설정파일 			JNDI 사용법
+
+
+
+
+
+
+

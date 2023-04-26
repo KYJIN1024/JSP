@@ -1,0 +1,95 @@
+교재 읽는부분 
+124p~139 html을 요청하는 내용이 나옴 
+304p
+313p
+326p
+330p
+335p 잘 표시해놓기  
+
+get 
+	=> a링크 (개발자가 의도한 방식으로 데이터전송)
+
+post
+	=> form
+	=> 사용자 입력대기
+
+웹프로그래머
+시작이 게시판 -> 끝 게시판  => CRUD
+
+웹프로그램
+		UI제작  - 웹디자이너(psd/ai) / 퍼플리셔(html)  => front-end programmer(+js)
+		
+		back-end programmer
+
+디자인 시안 ->-> 웹사이트 프로그램
+		1. page 흐름 + 데이터 흐름
+		2. UML
+		3. ERD
+		4. DFD(data flow diagram) - 새로운 프로그램(기획)
+				1. page간의 흐름  2. page내부의 흐름 (알고리즘) 
+
+1. ERD - 1개.. 테이블에 대한 컬럼..  어떤  데이터가 한글로 표현해보기 
+
+번호		seq			int				not null primary key auto_increment,
+제목		subject		varchar(150)		not null
+글쓴이	wrtier		varchar(12)		not null
+이메일	mail			varchar(50)		
+비밀번호	password		varchar(12)		not null
+내용		content		varchar(2000)		
+조회수	hit			int				not null
+아이피	wip			varchar(15)		not null
+등록일	wdate		datetime			not null
+
+
+create table board1 (
+seq			int				not null primary key auto_increment,
+subject		varchar(150)		not null,
+wrtier		varchar(12)		not null,
+mail			varchar(50),		
+password		varchar(12)		not null,
+content		varchar(2000),		
+hit			int				not null,
+wip			varchar(15)		not null,
+wdate		datetime			not null
+);
+
+데이터베이스명: board
+사용자명 : board
+암호: 1234
+
+
+페이지 흐름 + 데이터의 흐름 
+
+글 목록  		board_list1.jsp
+글 쓰기		board_write1.jsp
+글 자세히보기	board_view1.jsp
+글 수정		board_modify1.jsp
+글 삭제 		board_delete1.jsp 
+
+페이지의 흐름( page navigation)
+
+board_list1.jsp
+		(x)						   (입력내용)  									(x)
+		board_write1.jsp			-> board_write1_ok.jsp (데이터입력시 저장되는 공간) ->board_list1.jsp
+		(seq)
+		board_view1.jsp
+				(seq)				(seq,수정내용)
+				board_modify1.jsp -> board_modify1_ok.jsp -> board_view1.jsp
+				(seq)				(seq, 비밀번호)			(x)
+				board_delete1.jsp  -> board_delete1_ok.jsp -> board_list.jso
+
+
+*
+ 	java
+	db
+*
+	select count(*);
+	rs
+
+
+
+
+
+
+
+
