@@ -1,6 +1,7 @@
+<%@page import="org.mariadb.jdbc.export.Prepare"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.NamingException" %>
@@ -10,14 +11,25 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>		
-	
+<%@ page import="java.sql.SQLException" %>	
+
 <%
+	int cpage = 1;
+	if( request.getParameter( "cpage" ) !=null && !request.getParameter( "cpage" ).equals("")){  //문자열이냐 문자열이 성립이 안되냐 
+		cpage = Integer.parseInt( request.getParameter( "cpage") );
+	}	
+	
+	int recordPerPage = 10;
+	int totalRecord = 0;
+	
+	int totalPage = 1;
+	
+	int blockPerPage = 5;
+	
+
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
-	int totalRecord = 0;
 	
 	StringBuilder sbHtml = new StringBuilder();
 	
@@ -28,7 +40,7 @@
 		
 		conn = dataSource.getConnection();
 		
-		String sql = "select seq, subject, writer, emot, date_format(wdate, '%Y-%m-%d') wdate, hit, datediff(now(), wdate) wgap from emot_board1 order by seq desc";
+		String sql = "select seq, subject, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, datediff(now(), wdate) wgap from board1 order by seq desc";
 		pstmt = conn.prepareStatement( sql );
 		
 		rs = pstmt.executeQuery();
@@ -37,19 +49,21 @@
 		totalRecord = rs.getRow();
 		rs.beforeFirst();
 		
-		while( rs.next() ){
+		totalPage = ( (totalRecord -1 ) / recordPerPage ) + 1;
 		
+		int skip = ( cpage-1 ) * recordPerPage;
+		if( skip !=0 ) rs.absolute( skip );
+		
+		for(int i=0; i<recordPerPage && rs.next() ; i++){
             String seq = rs.getString("seq");
             String subject = rs.getString("subject");
             String writer = rs.getString("writer");
-            String emot = rs.getString( "emot" );
             String wdate = rs.getString("wdate");
             String hit = rs.getString("hit");
             int wgap = rs.getInt("wgap");
 			
             sbHtml.append("<tr>");
             sbHtml.append("<td>&nbsp;</td>");
-            sbHtml.append("<td><img src='../../images/emoticon/emot" + emot + ".png' width='15' /></td>");
             sbHtml.append("<td>" + seq + "</td>");
             sbHtml.append("<td class='left'>");
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
@@ -76,9 +90,9 @@
 		if( conn != null ) conn.close();
 	}
 
-%>	
-	
-	
+%>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -98,7 +112,7 @@
 <div class="con_txt">
 	<div class="contents_sub">
 		<div class="board_top">
-			<div class="bold">총 <span class="txt_orange">1</span>건</div>
+			<div class="bold">총 <span class="txt_orange"><%=totalRecord %></span>건</div>
 		</div>
 
 		<!--게시판-->
@@ -113,15 +127,58 @@
 				<th width="5%">조회</th>
 				<th width="3%">&nbsp;</th>
 			</tr>
-			
-			
-	<%=sbHtml %>
-					
+<!--  내용시작 -->			
+<%=sbHtml %>
+<!--  내용끝 -->				
+
 			</table>
 		</div>	
+
 		<div class="btn_area">
 			<div class="align_right">
-				<input type="button" value="쓰기" class="btn_write btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp'" />
+				<input type="button" value="쓰기" class="btn_writer btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp'" />
+			</div>
+			<!--페이지넘버-->
+		<div class="paginate_regular">
+			<div align="absmiddle">
+				
+<%
+	int startBlock = cpage - ( cpage-1) % blockperpage ;
+	int endBlock = cpage - ( cpage-1) % blockperpage + blockPerPage -1;
+	if( endBlock >= totalPage) {
+		endBlock = totalPage;
+	}
+	
+	if( startBlock == 1 ){
+		out.println("<span><a>&lt;&lt;</a></span>");
+	} else {
+		out.println("<span><a href='board_list1.jsp?cpage=" + ( startBlock -blockPerPage) + "'>&lt;</a></span>");
+		
+	}
+
+
+	if( cpage == 1 ){
+		out.println("<span><a>&lt;&lt;</a></span>");
+	} else {
+		out.println("<span><a href='board_list1.jsp?cpage=" + ( cpage-1) + "'>&lt;</a></span>");
+		
+	}
+
+
+	out.println("&nbsp;&nbsp;");
+	
+	
+   		 if ( cpage == totalPage ) {
+     	   out.println("<span>[" + i + "]</span>");
+   		 } else {
+     		   out.println("<span><a href='board_list1.jsp?cpage=" + i + "'>" + i + "</a></span>");
+    	 }
+	}
+%>				
+				&nbsp;&nbsp;
+				<span><a>&gt;</a></span>
+				&nbsp;
+				<span><a>&gt;&gt;</a></span>
 			</div>
 		</div>
 		<!--//게시판-->

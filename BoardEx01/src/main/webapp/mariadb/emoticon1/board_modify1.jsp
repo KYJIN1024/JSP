@@ -44,7 +44,7 @@
 		
 		pstmt.executeUpdate();
 	
-		String sql= "select subject, writer, mail, content, emot, from emot_board1 where seq=?";
+		String sql = "select subject, writer, mail, content, emot, from emot_board1 where seq=?";
 		pstmt = conn.prepareStatement( sql );
 		pstmt.setString( 1, seq );
 		

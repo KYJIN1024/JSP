@@ -1,0 +1,64 @@
+페이지 번호 		데이터갯수			시작번호
+cpage			recordPerPage 
+1				10				0	
+2				10				10
+3				10				20
+
+...
+시작번호 = 페이지번호.. 데이터갯수
+
+startRecord = (page - 1) * recordPerPage
+페이지 1: (1 - 1) * 10 = 0
+페이지 2: (2 - 1) * 10 = 10
+페이지 3: (3 - 1) * 10 = 20
+
+전체 데이터 갯수   데이터갯수 	전체 페이지수
+0			   10		1
+1			   10		1
+2			   10		1
+...
+
+10			   10		1
+11			   10		2
+
+전체 페이지수 = ((totalRecord -1) / recordPerpage) + 1;
+
+현재페이지 	한페이당 보일 페이지 갯수 		시작블록 		끝블럭
+cpage		blockPerpage
+1			5						1			1
+2			5						1			5
+...
+5			5						1			5
+6			5						6		    10
+
+시작블록 = 현재페이지 = cpage.. blockPerpage
+				 = cpage - ( cpage-1) % blockperpage 
+
+끝블록 cpage - ( cpage-1) % blockperpage + blockperpage -1 
+
+
+페이지 리스트를 포함한 페이지의 흐름...
+board_list1.jsp
+	(cpage)				(x)					(x)
+	board_write1.jsp 		board_write1_ok.jsp		board_list1.jsp
+	(cpage)
+	board_view1.jsp
+			(cpage)				(cpage)					(cpage)
+			board_modify1.jsp		board_modify1_ok.jsp		board_view1.jsp
+			(cpage)				(x)						(x)
+			board_delete1.jsp		board_delete1_ok.jsp		board_list.jsp
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
