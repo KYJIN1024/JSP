@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@page import="org.mariadb.jdbc.export.Prepare"%>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.NamingException" %>
 
 <%@ page import="javax.sql.DataSource" %>
-
+<%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>		
 	
-	
 <% 
-	request.setCharacterEncoding( "utf-8" );
+	request.setCharacterEncoding( "utf-8");
 	
-	String seq = request.getParameter( "seq" );
+	String seq = request.getParameter("seq");
+	//System.out.println( seq );
 	
 	String subject = "";
 	String writer = "";
@@ -27,36 +26,42 @@
 	String content = "";
 	String emot = "";
 	
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	try {
+	try{
 		Context initCtx = new InitialContext();
-		Context envCtx = (Context)initCtx.lookup( "java:comp/env" );
+		Context envCtx = (Context)initCtx.lookup("java:comp/env");
 		DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
 		
 		conn = dataSource.getConnection();
 		
+		
+		
+		//조회수 증가
 		String sql = "update emot_board1 set hit=hit+1 where seq=?";
-		pstmt = conn.prepareStatement( sql );
+		pstmt = conn.prepareStatement(sql);
 		pstmt.setString( 1, seq );
 		
 		pstmt.executeUpdate();
-	
-		sql= "select subject, writer, mail, wip, wdate, hit, content, emot, from emot_board1 where seq=?";
-		pstmt = conn.prepareStatement( sql );
+		
+		
+		sql = "select subject, writer, mail, wip, wdate, hit, content, emot from emot_board1 where seq=?";
+		pstmt = conn.prepareStatement(sql);
 		pstmt.setString( 1, seq );
 		
 		rs = pstmt.executeQuery();
+		
 		if( rs.next() ){
-			subject = rs.getString( "subject" );
-			writer = rs.getString( "writer" );
-			mail = rs.getString( "mail" );
-			wip = rs.getString( "wip" );
-			wdate = rs.getString( "wdate" );
-			hit = rs.getString( "hit" );
-			content = rs.getString( "content" ).replaceAll( "\n", "<br />" );
+			subject = rs.getString("subject");
+			writer = rs.getString("writer");
+			mail = rs.getString("mail");
+			wip = rs.getString("wip");
+			wdate = rs.getString("wdate");
+			hit = rs.getString("hit");
+			content = rs.getString("content").replaceAll("\n", "<br />" );
 			emot = "emot" + rs.getString( "emot" ) + ".png";
 		}
 		
@@ -69,7 +74,11 @@
 		if( pstmt != null ) pstmt.close();
 		if( conn != null ) conn.close();
 	}
-%>	
+	
+	
+
+%>		
+	
 	
 <!DOCTYPE html>
 <html lang="ko">
@@ -94,15 +103,15 @@
 			<table>
 			<tr>
 				<th width="10%">제목</th>
-				<td width="60%">(<img src="../../images/emoticon/emot01.png" width="15"/>)&nbsp;<%=subject %></td>
+				<td width="60%">(<img src="../../images/emoticon/<%=emot %>" width="15"/>)&nbsp;제목입니다.</td>
 				<th width="10%">등록일</th>
-				<td width="20%"><%=wdate %></td>
+				<td width="20%">2017.01.31 09:57</td>
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td><%=writer %>(<%=mail %>)</td>
+				<td>작성자(test@test.com)(000.000.000.000)</td>
 				<th>조회</th>
-				<td><%=hit %></td>
+				<td>3</td>
 			</tr>
 			<tr>
 				<td colspan="4" height="200" valign="top" style="padding: 20px; line-height: 160%">내용입니다.</td>

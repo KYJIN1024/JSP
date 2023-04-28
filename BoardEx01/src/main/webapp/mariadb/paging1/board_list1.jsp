@@ -13,23 +13,26 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>	
 
-<%
+<%	
 	int cpage = 1;
-	if( request.getParameter( "cpage" ) !=null && !request.getParameter( "cpage" ).equals("")){  //문자열이냐 문자열이 성립이 안되냐 
-		cpage = Integer.parseInt( request.getParameter( "cpage") );
+	if( request.getParameter("cpage")!= null && !request.getParameter( "cpage" ).equals("")){
+		cpage = Integer.parseInt ( request.getParameter( "cpage" ));
 	}	
 	
-	int recordPerPage = 10;
+	int recordPerPage = 10;  //한페이지당 10개씩 보임
 	int totalRecord = 0;
 	
 	int totalPage = 1;
 	
-	int blockPerPage = 5;
+	int blockPerPage = 5;  //5페이지씩 출력
 	
-
+				
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
+	
+	
 	
 	StringBuilder sbHtml = new StringBuilder();
 	
@@ -46,15 +49,16 @@
 		rs = pstmt.executeQuery();
 		
 		rs.last();
-		totalRecord = rs.getRow();
+		totalRecord = rs.getRow();  //총데이터갯수를 얻음
 		rs.beforeFirst();
 		
-		totalPage = ( (totalRecord -1 ) / recordPerPage ) + 1;
+		totalPage = ((totalRecord -1 ) / recordPerPage ) + 1;
 		
 		int skip = ( cpage-1 ) * recordPerPage;
-		if( skip !=0 ) rs.absolute( skip );
+		if( skip != 0) rs.absolute( skip );
 		
-		for(int i=0; i<recordPerPage && rs.next() ; i++){
+		
+		for(int i=0; i<recordPerPage && rs.next(); i++ ){
             String seq = rs.getString("seq");
             String subject = rs.getString("subject");
             String writer = rs.getString("writer");
@@ -65,12 +69,14 @@
             sbHtml.append("<tr>");
             sbHtml.append("<td>&nbsp;</td>");
             sbHtml.append("<td>" + seq + "</td>");
+            
             sbHtml.append("<td class='left'>");
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
             sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
             sbHtml.append("</td>");
+            
             sbHtml.append("<td>" + writer + "</td>");
             sbHtml.append("<td>" + wdate + "</td>");
             sbHtml.append("<td>" + hit + "</td>");
@@ -138,48 +144,58 @@
 			<div class="align_right">
 				<input type="button" value="쓰기" class="btn_writer btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp'" />
 			</div>
-			<!--페이지넘버-->
+					<!--페이지넘버-->
 		<div class="paginate_regular">
 			<div align="absmiddle">
-				
+
+			
 <%
-	int startBlock = cpage - ( cpage-1) % blockperpage ;
-	int endBlock = cpage - ( cpage-1) % blockperpage + blockPerPage -1;
-	if( endBlock >= totalPage) {
+	int startBlock = cpage - ( cpage-1 ) % blockPerPage;
+	int endBlock = cpage - ( cpage-1 ) % blockPerPage + blockPerPage -1;
+	if( endBlock >= totalPage ) {
 		endBlock = totalPage;
 	}
 	
-	if( startBlock == 1 ){
-		out.println("<span><a>&lt;&lt;</a></span>");
+	
+	if( startBlock == 1) {
+			out.println("<span><a>&lt;&lt;</a></span>");
 	} else {
-		out.println("<span><a href='board_list1.jsp?cpage=" + ( startBlock -blockPerPage) + "'>&lt;</a></span>");
-		
+			out.println("<span><a href='board_list1.jsp?cpage="+(startBlock - blockPerPage) + "'>&lt;&lt;</a></span>");
 	}
 
+	
+	
+	out.println( "&nbsp;");
+	
 
-	if( cpage == 1 ){
-		out.println("<span><a>&lt;&lt;</a></span>");
+	if( cpage == 1) {
+		out.println("<span><a>&lt;</a></span>");
 	} else {
-		out.println("<span><a href='board_list1.jsp?cpage=" + ( cpage-1) + "'>&lt;</a></span>");
-		
+		out.println("<span><a href='board_list1.jsp?cpage="+( cpage-1 ) +"'>&lt;</a></span>");  //이전페이지 버튼
 	}
-
 
 	out.println("&nbsp;&nbsp;");
 	
-	
-   		 if ( cpage == totalPage ) {
-     	   out.println("<span>[" + i + "]</span>");
-   		 } else {
-     		   out.println("<span><a href='board_list1.jsp?cpage=" + i + "'>" + i + "</a></span>");
-    	 }
+	for( int i=startBlock ; i<= endBlock ; i++ ){    
+		if( i == cpage ){
+			out.println( "<span><a>[" + i + "]</a></span>");
+		} else {
+		out.println( "<span><a href='board_list1.jsp?cpage=" + i + "'>"+ i + "</a></span>" );
+		}
 	}
+	out.println("&nbsp;&nbsp;");
+	if( cpage == totalPage ) {
+	out.println("<span><a>&gt;</a></span>");
+	} else {
+	out.println("<span><a href='board_list1.jsp?cpage="+( cpage+1 ) +"'>&gt;</a></span>");  //다음페이지버튼
+	}
+	
 %>				
-				&nbsp;&nbsp;
-				<span><a>&gt;</a></span>
 				&nbsp;
 				<span><a>&gt;&gt;</a></span>
 			</div>
+		</div>
+		<!--//페이지넘버-->
 		</div>
 		<!--//게시판-->
 	</div>

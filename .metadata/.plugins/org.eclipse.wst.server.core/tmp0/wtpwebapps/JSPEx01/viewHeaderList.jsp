@@ -15,8 +15,9 @@
 		String headerName = (String)headerEnum.nextElement();
 		String headerValue = request.getHeader(headerName);
 %>
-<% 
+
 <%= headerName %> = <%= headerValue %> <br>
+
 <%
 	}
 %>

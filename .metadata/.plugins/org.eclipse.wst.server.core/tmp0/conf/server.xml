@@ -167,6 +167,14 @@
 	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb1" password="123456" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/sample" username="root"/>
 	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb2" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/project" username="project"/>
 <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb3" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/board" username="board"/>
+</Context><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MailEx01" path="/MailEx01" reloadable="true" source="org.eclipse.jst.jee.server:MailEx01"/><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Model1Ex01" path="/Model1Ex01" reloadable="true" source="org.eclipse.jst.jee.server:Model1Ex01">
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb1" password="123456" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/sample" username="root"/>
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb2" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/project" username="project"/>
+<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb3" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/board" username="board"/>
+</Context><Context docBase="D:\JAVA\JSP\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Model1Ex02" path="/Model1Ex02" reloadable="true" source="org.eclipse.jst.jee.server:Model1Ex02">
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb1" password="123456" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/sample" username="root"/>
+	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb2" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/project" username="project"/>
+<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" name="jdbc/mariadb3" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/board" username="board"/>
 </Context></Host>
     </Engine>
   </Service>

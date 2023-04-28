@@ -1,0 +1,44 @@
+테이블명 : emot_board1
+
+번호		seq			int				not null primary key auto_increment,
+제목		subject		varchar(150)		not null
+글쓴이	wrtier		varchar(12)		not null
+이메일	mail			varchar(50)		
+비밀번호	password		varchar(12)		not null
+내용		content		varchar(2000)		
+이모티콘   emot			char(2)			not null
+조회수	hit			int				not null
+아이피	wip			varchar(15)		not null
+등록일	wdate		datetime			not null
+
+create table emot_board1 (
+seq			int				not null primary key auto_increment,
+subject		varchar(150)		not null,
+wrtier		varchar(12)		not null,
+mail			varchar(50),		
+password		varchar(12)		not null,
+content		varchar(2000),		
+emot			char(2)			not null,
+hit			int				not null,
+wip			varchar(15)		not null,
+wdate		datetime			not null
+);
+
+
+*페이지의 흐름( page navigation)
+
+board_list1.jsp
+		(x)						   (입력내용)  									(x)
+		board_write1.jsp			-> board_write1_ok.jsp (데이터입력시 저장되는 공간) ->board_list1.jsp
+		(seq)
+		board_view1.jsp
+				(seq)				(seq,수정내용)
+				board_modify1.jsp -> board_modify1_ok.jsp -> board_view1.jsp
+				(seq)				(seq, 비밀번호)			(x)
+				board_delete1.jsp  -> board_delete1_ok.jsp -> board_list.jso
+
+
+
+
+
+

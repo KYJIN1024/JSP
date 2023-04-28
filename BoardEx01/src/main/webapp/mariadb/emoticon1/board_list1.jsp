@@ -38,25 +38,25 @@
 		rs.beforeFirst();
 		
 		while( rs.next() ){
-		
             String seq = rs.getString("seq");
             String subject = rs.getString("subject");
             String writer = rs.getString("writer");
-            String emot = rs.getString( "emot" );
+            String emot = rs.getString("emot");
             String wdate = rs.getString("wdate");
             String hit = rs.getString("hit");
             int wgap = rs.getInt("wgap");
 			
             sbHtml.append("<tr>");
-            sbHtml.append("<td>&nbsp;</td>");
             sbHtml.append("<td><img src='../../images/emoticon/emot" + emot + ".png' width='15' /></td>");
             sbHtml.append("<td>" + seq + "</td>");
+            
             sbHtml.append("<td class='left'>");
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
             sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
             sbHtml.append("</td>");
+            
             sbHtml.append("<td>" + writer + "</td>");
             sbHtml.append("<td>" + wdate + "</td>");
             sbHtml.append("<td>" + hit + "</td>");
@@ -76,7 +76,12 @@
 		if( conn != null ) conn.close();
 	}
 
-%>	
+%>
+	
+	
+	
+	
+	
 	
 	
 <!DOCTYPE html>
@@ -113,10 +118,24 @@
 				<th width="5%">조회</th>
 				<th width="3%">&nbsp;</th>
 			</tr>
-			
-			
-	<%=sbHtml %>
-					
+			<tr>
+				<td><img src="../../images/emoticon/emot01.png" width="15"/></td>
+				<td>1</td>
+				<td class="left"><a href="board_view1.jsp">adfas</a>&nbsp;<img src="../../images/icon_new.gif" alt="NEW"></td>
+				<td>asdfa</td>
+				<td>2017-01-31</td>
+				<td>6</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><img src="../../images/emoticon/emot01.png" width="15"/></td>
+				<td>1</td>
+				<td class="left"><a href="board_view1.jsp">adfas</a>&nbsp;<img src="../../images/icon_new.gif" alt="NEW"></td>
+				<td>asdfa</td>
+				<td>2017-01-31</td>
+				<td>6</td>
+				<td>&nbsp;</td>
+			</tr>			
 			</table>
 		</div>	
 		<div class="btn_area">

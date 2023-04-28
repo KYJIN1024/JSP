@@ -49,12 +49,14 @@
             sbHtml.append("<tr>");
             sbHtml.append("<td>&nbsp;</td>");
             sbHtml.append("<td>" + seq + "</td>");
+            
             sbHtml.append("<td class='left'>");
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
             sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
             sbHtml.append("</td>");
+            
             sbHtml.append("<td>" + writer + "</td>");
             sbHtml.append("<td>" + wdate + "</td>");
             sbHtml.append("<td>" + hit + "</td>");

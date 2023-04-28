@@ -8,32 +8,44 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/board.css">
-<script type="text/javascript">
-	window.onload = function() {
-		document.getElementById( 'wbtn' ).onclick = function() {
-			
-			if( document.wfrm.info.checked == false ){
-				alert( '동의하셔야 합니다');
-				return false;
-			}
-			if( document.wfrm.writer.value.trim() == '' ){ 
-				alert( '제목을 입력하셔야 합니다');
-				return false;
-			}
-			if( document.wfrm.writer.value.trim() == '' ){
-				alert( '글쓴이를 입력하셔야 합니다');
-				return false;
-			};
-			if( document.wfrm.password.value.trim() == '' ) {
-				alert( '비밀번호를 입력하셔야 합니다.' );
-				return false;
-			};
-			document.wfrm.submit();
-			
-		};
-		
-	};
+<script>
+    function submitForm() {
+        var form = document.forms[0];
+        
+        if (form.subject.value === "") {
+            alert("제목을 입력하세요.");
+            form.subject.focus();
+            return;
+        }
+        
+        if (form.writer.value === "") {
+            alert("글쓴이를 입력하세요.");
+            form.writer.focus();
+            return;
+        }
+        
+        if (form.password.value === "") {
+            alert("비밀번호를 입력하세요.");
+            form.password.focus();
+            return;
+        }
+        
+        if (form.content.value === "") {
+            alert("내용을 입력하세요.");
+            form.content.focus();
+            return;
+        }
+        
+        if (!form.info.checked) {
+            alert("개인정보 수집 및 이용에 관한 안내에 동의해야 합니다.");
+            form.info.focus();
+            return;
+        }
+        
+        form.submit();
+    }
 </script>
+
 </head>
 
 <body>
@@ -43,7 +55,7 @@
 	<p>HOME &gt; 게시판 &gt; <strong>게시판</strong></p>
 </div>
 <div class="con_txt">
-	<form action="board_write1_ok.jsp" method="post" name="wfrm">
+	<form action="" method="post" name="">
 		<div class="contents_sub">	
 			<!--게시판-->
 			<div class="board_write">
@@ -70,7 +82,7 @@
 				</tr>
 				<tr>
 					<th>이모티콘</th>
-					<td colspan="3"  align="center">
+					<td align="center">
 						<table>
 						<tr>
 							<td>
@@ -289,7 +301,7 @@
 					<input type="button" value="목록" class="btn_list btn_txt02" style="cursor: pointer;" onclick="location.href='board_list1.jsp'" />
 				</div>
 				<div class="align_right">
-					<input type="button" value="쓰기" class="btn_write btn_txt01" style="cursor: pointer;" />
+					<input type="button" value="쓰기" class="btn_write btn_txt01" style="cursor: pointer;" onclick="submitForm();"  />
 				</div>
 			</div>
 			<!--//게시판-->
