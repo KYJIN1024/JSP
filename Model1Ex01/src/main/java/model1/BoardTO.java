@@ -12,8 +12,6 @@ public class BoardTO {
 		private String wdate;
 		private int wgap;
 		
-		
-		
 		public String getSeq() {
 			return seq;
 		}

@@ -23,7 +23,7 @@
 	to.setWip(request.getRemoteAddr());
 	
 	BoardDAO dao = new BoardDAO();
-	int flag = dao.boardWriteOk(to);
+	int flag = dao.boardWriteOk( to );
 	
 	
 	out.println( "<script type='text/javascript'>" );

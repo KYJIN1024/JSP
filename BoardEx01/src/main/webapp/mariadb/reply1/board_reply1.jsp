@@ -1,11 +1,9 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <%
-	request.setCharacterEncoding("utf-8");
-	
-	String seq = request.getParameter( "seq" );
+	request.setCharacterEncoding( "utf-8" );
 
+	String seq = request.getParameter( "seq" );
 %>	
 	
 	
@@ -33,7 +31,7 @@
 				alert( '글쓴이를 입력하셔야 합니다');
 				return false;
 			}
-			document.wfrm.submit();
+			 document.wfrm.submit();
 		};
 	};
 </script>
@@ -49,13 +47,12 @@
 <div class="con_menu"></div>
 <div class="con_txt">
 	<form action="board_reply1_ok.jsp" method="post" name="wfrm">
-		<input type="hidden" name="seq" value="<%=seq %>" />
-		
-		<div class="contents_sub">	
-			<!--게시판-->
-			<div class="board_write">
-				<table>
-				<tr>
+		<input type="hidden"  name="seq" value="<%=seq %>" />
+					<div class="contents_sub">	
+				<!--게시판-->
+				<div class="board_write">
+					<table>
+					<tr>
 					<th class="top">글쓴이</th>
 					<td class="top"><input type="text" name="writer" value="" class="board_view_input_mail" maxlength="5" /></td>
 				</tr>
@@ -79,7 +76,7 @@
 				
 				<table>
 				<tr>
-					
+					<br />
 					<td style="text-align:left;border:1px solid #e0e0e0;background-color:f9f9f9;padding:5px">
 						<div style="padding-top:7px;padding-bottom:5px;font-weight:bold;padding-left:7px;font-family: Gulim,Tahoma,verdana;">※ 개인정보 수집 및 이용에 관한 안내</div>
 						<div style="padding-left:10px;">

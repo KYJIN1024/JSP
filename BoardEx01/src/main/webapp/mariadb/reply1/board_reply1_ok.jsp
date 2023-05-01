@@ -9,15 +9,16 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Timestamp" %>
 
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String seq = request.getParameter( "seq" );
+	//부모글의 seq
+	String seq = request.getParameter("seq");
 	
 	String subject = request.getParameter("subject");
 	String writer = request.getParameter("writer");
-	
 	
 	String mail = "";
 	if( !request.getParameter("mail1").equals("") 
@@ -41,20 +42,20 @@
 	PreparedStatement pstmt = null; 
 	ResultSet rs = null;
 	
+	// 0: 정상 / 1: 비정상
 	int flag = 1;
 	
 	try{
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context)initCtx.lookup("java:comp/env");
-		
 		DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
 		
 		conn = dataSource.getConnection();
 		
-		// 부모글에 대한 정보
+		//부모글에 대한 정보
 		String sql = "select grp, grps, grpl from rep_board1 where seq=?";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, seq );
+		pstmt = conn.prepareStatement( sql );
+		pstmt.setString( 1, seq );
 		
 		rs = pstmt.executeQuery();
 		
@@ -63,25 +64,24 @@
 		int grpl = 0;
 		
 		if( rs.next() ){
-			grp = rs.getInt("grp");
-			grps = rs.getInt("grps");
-			grpl = rs.getInt("grpl");
+			grp = rs.getInt( "grp" );
+			grps = rs.getInt( "grps" );
+			grpl = rs.getInt( "grpl" );
 		}
 		
 		sql = "update rep_board1 set grps=grps+1 where grp=? and grps>?";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt( 1, grp ); 
-		pstmt.setInt( 2, grps );
+		pstmt.setInt(1, grp);
+		pstmt.setInt(2, grps);
 		
 		pstmt.executeUpdate();
 		
-		
-		sql = "insert into rep_board1 (grp, grps, grpl, subject, writer, mail, password, content, wip, hit, wdate) values (?, ?, ?, ?, ?, ?, ?, ?, null, 0, now())";
-		pstmt = conn.prepareStatement( sql );
+		sql = "insert into rep_board1 values(0, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, now())";
+		pstmt = conn.prepareStatement( sql );		
 		pstmt.setInt(1, grp);
-		pstmt.setInt(2, grps+1);
+		pstmt.setInt(2, grps + 1);
 		pstmt.setInt(3, grpl+1);
-		
+				
 		pstmt.setString(4, subject);
 		pstmt.setString(5, writer);
 		pstmt.setString(6, mail);
@@ -103,18 +103,17 @@
 		System.out.println( "[에러] " + e.getMessage() );
 	} finally {
 		
-		if( rs != null ) rs.close();
 		if( pstmt != null ) pstmt.close();
 		if( conn != null ) conn.close();
 	}
 	
 	out.println( "<script type='text/javascript'>" );
 	if( flag == 0 ){
-		out.println( "alert('답글쓰기에 성공');" ); 
+		out.println( "alert('답글글쓰기에 성공');" ); 
 		out.println( "location.href='board_list1.jsp';" ); 
 			
 	}else {
-		out.println( "alert('답글쓰기에 실패');" );
+		out.println( "alert('답글글쓰기에 실패');" );
 		out.println( "history.back();" );
 	}
 	out.println( "</script>" );

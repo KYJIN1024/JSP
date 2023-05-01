@@ -32,7 +32,7 @@
 		
 		conn = dataSource.getConnection();
 		
-		String sql = "select subject, writer, mail, wip, wdate, hit, content from board1 where seq=?";
+		String sql = "select subject, writer, mail, wip, wdate, hit, content from rep_board1 where seq=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString( 1, seq );
 		
@@ -89,7 +89,7 @@
 </div>
 <div class="con_txt">
 	<form action="board_delete1_ok.jsp" method="post" name="dfrm">
-		<input type= "hidden" name="=seq" value="<%=seq %>" />
+		<input type= "hidden" name="seq" value="<%=seq %>" />
 		<div class="contents_sub">	
 			<!--게시판-->
 			<div class="board_write">

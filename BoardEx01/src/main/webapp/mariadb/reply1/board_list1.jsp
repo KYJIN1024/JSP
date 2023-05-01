@@ -43,7 +43,7 @@
             
             int grpl = rs.getInt("grpl");
             String strGrpl = "";
-            for(int j=1; j<=grpl; j++ ){
+            for( int j=1; j<=grpl ; j++ ){
             	strGrpl += "&nbsp;&nbsp;";
             }
             
@@ -51,20 +51,21 @@
             String writer = rs.getString("writer");
             String wdate = rs.getString("wdate");
             String hit = rs.getString("hit");
-            int wgap = rs.getInt("wgap");
+            int wgap = rs.getInt("wgap"); 
 			
             sbHtml.append("<tr>");
             sbHtml.append("<td>&nbsp;</td>");
             sbHtml.append("<td>" + seq + "</td>");
+            
             sbHtml.append("<td class='left'>");
             
-            if( grpl != 0 ){
-            	sbHtml.append( strGrpl + "<img src='../../images/icon_re1.gif' />");
+            if(grpl !=0 ){
+            	sbHtml.append( strGrpl + "<img src='../../images/icon_re1.gif'/>");
             }
             
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
-           	 sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
+            sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
             sbHtml.append("</td>");
             

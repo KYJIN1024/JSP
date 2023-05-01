@@ -33,7 +33,7 @@
 		
 		conn = dataSource.getConnection();
 		
-		String sql = "select subject, writer, mail, content from board1 where seq=?";
+		String sql = "select subject, writer, mail, content from rep_board1 where seq=?";
 		pstmt = conn.prepareStatement( sql );
 		pstmt.setString( 1, seq );
 		

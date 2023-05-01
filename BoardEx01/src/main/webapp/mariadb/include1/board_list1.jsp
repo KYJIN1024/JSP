@@ -1,20 +1,24 @@
 <%@page import="org.mariadb.jdbc.export.Prepare"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@ page import="model1.BoardTO" %>
-<%@ page import="model1.BoardDAO" %>
+
 <%@ include file="./include/connection.jspf" %>
 
+
 <%
-	BoardDAO dao = new BoardDAO();
-	ArrayList<BoardTO> datas = dao.boardList();
-	
-	int totalRecord = datas.size();
+	int totalRecord = 0;
 	
 	StringBuilder sbHtml = new StringBuilder();
 	
-	
+	try{
+		String sql = "select seq, subject, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, datediff(now(), wdate) wgap from board1 order by seq desc";
+		pstmt = conn.prepareStatement( sql );
+		
+		rs = pstmt.executeQuery();
+		
+		rs.last();
+		totalRecord = rs.getRow();
+		rs.beforeFirst();
 		
 		while( rs.next() ){
             String seq = rs.getString("seq");
@@ -27,7 +31,7 @@
             sbHtml.append("<tr>");
             sbHtml.append("<td>&nbsp;</td>");
             sbHtml.append("<td>" + seq + "</td>");
-            
+           
             sbHtml.append("<td class='left'>");
             sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
@@ -42,7 +46,7 @@
             sbHtml.append("</tr>");	
 			
 		}
-
+		
 	
 	} catch( SQLException e ) {
 		System.out.println( "[에러] " + e.getMessage() );
@@ -91,7 +95,7 @@
 				<th width="3%">&nbsp;</th>
 			</tr>
 <!--  내용시작 -->			
-<%=sbHtml %> 
+<%=sbHtml %>
 <!--  내용끝 -->				
 
 			</table>

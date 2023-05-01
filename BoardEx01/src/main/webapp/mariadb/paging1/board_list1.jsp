@@ -71,7 +71,7 @@
             sbHtml.append("<td>" + seq + "</td>");
             
             sbHtml.append("<td class='left'>");
-            sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
+            sbHtml.append("<a href='board_view1.jsp?cpage=" + cpage + "&seq=" + seq + "'>" + subject + "</a>");
             if( wgap == 0){
             sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
@@ -142,7 +142,7 @@
 
 		<div class="btn_area">
 			<div class="align_right">
-				<input type="button" value="쓰기" class="btn_writer btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp'" />
+				<input type="button" value="쓰기" class="btn_writer btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp?cpage=<%=cpage %>'" />
 			</div>
 					<!--페이지넘버-->
 		<div class="paginate_regular">
@@ -190,9 +190,15 @@
 	out.println("<span><a href='board_list1.jsp?cpage="+( cpage+1 ) +"'>&gt;</a></span>");  //다음페이지버튼
 	}
 	
+	out.println("&nbsp;");
+	if( endBlock == totalPage ) {
+	out.println("<span><a>&gt;&gt;</a></span>");
+	} else {
+	out.println("<span><a href='board_list1.jsp?cpage="+( startBlock + blockPerPage ) +"'>&gt;</a></span>");  //다음페이지버튼
+	}
+	
 %>				
-				&nbsp;
-				<span><a>&gt;&gt;</a></span>
+			
 			</div>
 		</div>
 		<!--//페이지넘버-->

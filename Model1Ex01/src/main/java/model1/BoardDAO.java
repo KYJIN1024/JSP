@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 public class BoardDAO {
 	private DataSource dataSource = null;
 	
-	
 	public BoardDAO(BoardTO to) {
 		// TODO Auto-generated constructor stub
 		// 데이터베이스 접속
@@ -46,7 +45,7 @@ public class BoardDAO {
 		try{
 			conn =  this.dataSource.getConnection();
 			
-			String sql = "insert into board1(subject, writer, mail, password, content, wip, hit, wdate) values(?, ?, ?, ?, ?, ?, 0, now())";
+			String sql = "insert into board1 values(0, ?, ?, ?, ?, ?, 0, ?, now())";
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setString(1, to.getSubject());
 			pstmt.setString(2, to.getWriter());
@@ -54,8 +53,6 @@ public class BoardDAO {
 			pstmt.setString(4, to.getPassword());
 			pstmt.setString(5, to.getContent());
 			pstmt.setString(6, to.getWip() );
-			
-			
 			
 			int result = pstmt.executeUpdate();
 			if( result == 1 ){

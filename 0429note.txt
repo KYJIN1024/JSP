@@ -1,0 +1,74 @@
+웹페이지
+하드코딩
+		*.jsp
+(mvc)model1
+	*jsp + class
+	cliend 	=> jsp -> model 	->데이터(db/file/다른)
+			contoroller(요청제어)
+			view
+
+
+파일업로드
+1. 라이브러리
+	1. MultipartRequest
+		http://www.servlets.com
+	2. Apache
+
+2. 업로드
+	*파일 -> 데이터베이스 입력
+		=>파일명 / 경로..
+
+*다운로드
+	브라우저가 해석 가능한 파일 .. 브라우저가 viewer가됨
+	=> 다운로드받게 프로그램하여 변경가능
+	브라우저가 해석 불가능한 파일  .. 다운로드
+
+insert into pds_board1 values ( 0, '제목', '이름', 'test@test.com', '1234', '내용', 'test.txt', 0, 0,'000.0000.0000', now() );
+
+create table pds_board1 (
+seq			int				not null primary key auto_increment,
+subject		varchar(150)		not null,
+writer		varchar(12)		not null,
+mail			varchar(50),		
+password		varchar(12)		not null,
+content		varchar(2000),		
+filename 		varchar(50),
+filesize		int,
+hit			int				not null,
+wip			varchar(15)		not null,
+wdate		datetime			not null
+);
+
+
+modify -> modify_ok
+1.새로운 첨부파일이 있는 경우
+		기존 첨부파일 있는
+				첨부파일 삭제
+		기존 첨부파일 없는
+			x
+		update 테이블명 set ...  filename=?, filesize=? where...
+2. 새로운 첨부파일 없는 경우
+		x	
+		update 테이블명 set.. where 
+
+insert into album_board1 values ( 0, '제목', '이름', 'test@test.com', '1234', '내용', 'test.txt', 0, 0,'000.0000.0000', now() );
+
+create table album_board1 (
+seq			int				not null primary key auto_increment,
+subject		varchar(150)		not null,
+writer		varchar(12)		not null,
+mail			varchar(50),		
+password		varchar(12)		not null,
+content		varchar(2000),		
+filename 		varchar(50),
+filesize		int,
+hit			int				not null,
+wip			varchar(15)		not null,
+wdate		datetime			not null
+);
+
+
+
+
+
+

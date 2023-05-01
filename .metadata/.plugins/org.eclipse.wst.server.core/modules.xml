@@ -2,6 +2,8 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:JSPEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:JDBCEx03" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:AlbumEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:JDBCEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:BoardEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:UploadEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
 </modules>

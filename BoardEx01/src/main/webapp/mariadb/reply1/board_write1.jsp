@@ -24,7 +24,7 @@
 				alert( '글쓴이를 입력하셔야 합니다');
 				return false;
 			}
-			document.wfrm.submit();
+			 document.wfrm.submit();
 		};
 	};
 </script>

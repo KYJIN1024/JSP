@@ -9,14 +9,13 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Timestamp" %>
 
 <%
 	request.setCharacterEncoding("utf-8");
 	
 	String subject = request.getParameter("subject");
 	String writer = request.getParameter("writer");
-	
-	
 	String mail = "";
 	if( !request.getParameter("mail1").equals("") 
 			&& !request.getParameter("mail2").equals("")){
@@ -38,18 +37,18 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null; 
 	
+	
 	// 0: 정상 / 1: 비정상
 	int flag = 1;
 	
 	try{
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context)initCtx.lookup("java:comp/env");
-		
 		DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
 		
 		conn = dataSource.getConnection();
 		
-		String sql = "insert into rep_board1 values( 0, last_insert_id()+1,0,0, ?,?,?,?,0,?, now() );";
+		String sql = "insert into rep_board1 values(0, last_insert_id()+1, 0, 0, ?, ?, ?, ?, ?, 0, ?, now())";
 		pstmt = conn.prepareStatement( sql );
 		pstmt.setString(1, subject);
 		pstmt.setString(2, writer);
@@ -58,6 +57,8 @@
 		pstmt.setString(5, content);
 		pstmt.setString(6, wip);
 		
+		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+		pstmt.setTimestamp(7, currentTimestamp);
 		
 		int result = pstmt.executeUpdate();
 		if( result == 1 ){
