@@ -1,21 +1,20 @@
-﻿<%@page import="org.mariadb.jdbc.export.Prepare"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.NamingException" %>
 
 <%@ page import="javax.sql.DataSource" %>
-<%@ page import="java.sql.ResultSet" %>
+
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.SQLException" %>	
-	
-<% 
-	request.setCharacterEncoding( "utf-8");
-	
-	String seq = request.getParameter("seq");
-	//System.out.println( seq );
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+
+<%
+	request.setCharacterEncoding( "utf-8" );
+
+	String seq = request.getParameter( "seq" );
 	
 	String subject = "";
 	String writer = "";
@@ -26,50 +25,73 @@
 	String content = "";
 	String filename = "";
 	long filesize = 0;
-	String file = "";   // 첨부파일을 넣지않았을때 null대신 공백처리
+	String file = "";
 	
+	
+	String pseq = "";
+	String psubject = "";
+	String nseq = "";
+	String nsubject = "";
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	try{
+	try {
 		Context initCtx = new InitialContext();
-		Context envCtx = (Context)initCtx.lookup("java:comp/env");
+		Context envCtx = (Context)initCtx.lookup( "java:comp/env" );
 		DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
 		
 		conn = dataSource.getConnection();
 		
-		
-		
-		//조회수 증가
 		String sql = "update album_board1 set hit=hit+1 where seq=?";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement( sql );
 		pstmt.setString( 1, seq );
 		
 		pstmt.executeUpdate();
 		
-		
 		sql = "select subject, writer, mail, wip, wdate, hit, content, filename, filesize from album_board1 where seq=?";
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement( sql );
 		pstmt.setString( 1, seq );
 		
 		rs = pstmt.executeQuery();
 		
-		if( rs.next() ){
-			subject = rs.getString("subject");
-			writer = rs.getString("writer");
-			mail = rs.getString("mail");
-			wip = rs.getString("wip");
-			wdate = rs.getString("wdate");
-			hit = rs.getString("hit");
-			content = rs.getString("content").replaceAll("\n", "<br />" );
-			filename = rs.getString("filename");
-			filesize = rs.getLong("filesize");
-			if( filesize != 0 ){
-				file = "<a href='../../upload/" + filename + "'>" + filename + "</a>(" + filesize + "byte)";
+		if( rs.next() ) {
+			subject = rs.getString( "subject" );
+			writer = rs.getString( "writer" );
+			mail = rs.getString( "mail" );
+			wip = rs.getString( "wip" );
+			wdate = rs.getString( "wdate" );
+			hit = rs.getString( "hit" );
+			content = rs.getString( "content" ).replaceAll( "\n", "<br />" );
+			filename = rs.getString( "filename" );
+			filesize = rs.getLong( "filesize" );
+			if( filesize != 0 ) {
+				file = "<a href='../../upload/" + filename + "'><img src='../../upload/" + filename + "' width='70%' /></a>";
 			}
 		}
+		
+		sql = "select seq, subject from album_board1 where seq = (select max(seq) from album_board1 where seq <?)";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString( 1, seq );
+		
+		rs = pstmt.executeQuery();
+		if ( rs.next() ){
+			pseq = rs.getString( "seq" );
+			psubject = rs.getString( "subject" );
+		}
+		
+		
+		sql = "select seq, subject from album_board1 where seq = (select min(seq) from album_board1 where seq >?)";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString( 1, seq );
+		
+		rs = pstmt.executeQuery();
+		if ( rs.next() ){
+			pseq = rs.getString( "seq" );
+			psubject = rs.getString( "subject" );
+		}
+		
 		
 	} catch( NamingException e ) {
 		System.out.println( "[에러] " + e.getMessage() );
@@ -80,11 +102,7 @@
 		if( pstmt != null ) pstmt.close();
 		if( conn != null ) conn.close();
 	}
-	
-	
-
-%>	
-
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -110,30 +128,24 @@
 			<table>
 			<tr>
 				<th width="10%">제목</th>
-				<td width="60%">제주 올레길 좋아요(000.000.000.000)</td>
+				<td width="60%"><%=subject %>(<%=wip %>)</td>
 				<th width="10%">등록일</th>
-				<td width="20%">2016.03.02 21:11</td>
+				<td width="20%"><%=wdate %></td>
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td>여행자</td>
+				<td><%=writer %></td>
 				<th>조회</th>
-				<td>345</td>
-			</tr>
-			<tr>
-				<th>첨부 파일</th>
-				<td><%=file %></td>
-				<th></th>
-				<td></td>
+				<td><%=hit %></td>
 			</tr>
 			<tr>
 				<td colspan="4" height="200" valign="top" style="padding:20px; line-height:160%">
 					<div id="bbs_file_wrap">
 						<div>
-							<img src="../../upload/607927_1.jpg" width="900" onerror="" /><br />
+							<%=file %><br />
 						</div>
 					</div>
-					시간이 되면 또 걷고 싶은 길이네요
+					<%=content %>
 				</td>
 			</tr>			
 			</table>
@@ -152,10 +164,18 @@
 		
 		<!-- 이전글 / 다음글 -->
 		<div class="next_data_area">
-			<span class="b">다음글 | </span><a href="board_view1.jsp">다음글이 없습니다.</a>
+				<% if (!nseq.isEmpty()){ %>
+					<span class="b">다음글 | </span><a href="board_view1.jsp?seq=<%=nseq %>"><%=nsubject %></a>
+				<% } else { %>
+					<span class="b">다음글 | </span><a href="#">다음글이 없습니다</a>
+				<% } %>
 		</div>
 		<div class="prev_data_area">
-			<span class="b">이전글 | </span><a href="board_view1.jsp">이전글이 없습니다.</a>
+				<% if (!pseq.isEmpty()) {%>
+					<span class="b">이전글 | </span><a href="board_view1.jsp?seq=<%=pseq %>"><%=psubject %></a>
+				<% } else { %>
+					<span class="b">이전글 | </span><a href="#">이전글이 없습니다.</a>
+				<% } %>
 		</div>
 		<!-- //이전글 / 다음글 -->
 	</div>

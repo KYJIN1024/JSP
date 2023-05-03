@@ -1,0 +1,51 @@
+Front Controller
+
+1. Parameter
+		서블릿이름? 키=값1		다른jsp
+		서블릿이름? 키=값2	 	다른jsp
+
+		controller?action=view1  View1Action 	view1.jsp
+		contorller?action=view2  View2Action	     view2.jsp
+		
+		c
+	
+
+2. URL
+		값1.do				다른jsp
+		값2.do				다른jsp
+
+		view1.do				view1.jsp
+		view2.do				view2.jsp
+
+
+우편번호 검색기 설계도
+
+							ACTION(interface)
+controller?path=zipcode 		ZipcodeAction    zipcode.jsp - 동이름입력
+controller?path=zipcode_ok		ZipcodeOkAction  zipcode_ok.jsp - 결과출력
+								
+							-> TO	DAO  ->DB
+
+
+simple
+
+model1
+board_write1.jsp 		->  BoardTO 	-> 	BoardDAO  -> DB
+board_write1_ok.jsp	
+board_list1.jsp
+
+=> model2
+
+controller(Servlet)		BoardAction(interface)
+		path=write		WriteAction			BoardTO		boardDAO
+
+
+
+
+
+
+
+
+
+
+

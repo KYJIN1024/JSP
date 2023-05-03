@@ -1,97 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="javax.naming.Context" %>
-<%@ page import="javax.naming.InitialContext" %>
-<%@ page import="javax.naming.NamingException" %>
-
-<%@ page import="javax.sql.DataSource" %>
-
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>	
-	
-<%
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int totalRecord = 0;
-		
-		StringBuilder sbHtml = new StringBuilder();
-		
-		try{
-		Context initCtx = new InitialContext();
-		Context envCtx = (Context)initCtx.lookup("java:comp/env");
-		DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
-		
-		conn = dataSource.getConnection();
-		
-		String sql = "select seq, subject, writer, filesize, date_format(wdate, '%Y-%m-%d') wdate, hit, datediff(now(), wdate) wgap from album_board1 order by seq desc";
-		pstmt = conn.prepareStatement( sql );
-		
-		rs = pstmt.executeQuery();
-		
-		rs.last();
-		totalRecord = rs.getRow();
-		rs.beforeFirst();
-		
-		while( rs.next() ){
-			int id = rs.getInt("id");
-			String title = rs.getString("title");
-			String writer = rs.getString("writer");
-			Date date = rs.getDate("date");
-			int hit = rs.getInt("hit");
-			String thumbnailUrl = rs.getString("thumbnail_url");
-			
-			sbHtml.append("<td width=\"20%\" class=\"last2\">")
-			.append("<div class=\"board\">")
-			.append("<table class=\"boardT\">")
-			.append("<tr>")
-			.append("<td class='boardThumbWrap'>")
-			.append("<div class='boardThumb'>")
-			.append("<a href=\"board_view1.jsp?id=").append(id).append("\"><img src=\"").append(thumbnailUrl).append("\" border=\"0\" width=\"100%\" /></a>")
-			.append("</div>")
-			.append("</td>")
-			.append("</tr>")
-			.append("<tr>")
-			.append("<td>")
-			.append("<div class='boardItem'>")
-			.append("<strong>").append(title).append("</strong>")
-			.append("<img src=\"../../images/icon_new.gif\" alt=\"NEW\">")
-			.append("</div>")
-			.append("</td>")
-			.append("</tr>")
-			.append("<tr>")
-			.append("<td><div class='boardItem'><span class=\"bold_blue\">").append(writer).append("</span></div></td>")
-			.append("</tr>")
-			.append("<tr>")
-			.append("<td><div class='boardItem'>").append(date).append(" <font>|</font> Hit ").append(hit).append("</div></td>")
-			.append("</tr>")
-			.append("</table>")
-			.append("</div>")
-			.append("</td>");
-	}
-	        if( filesize != 0){
-	        	sbHtml.append( "<img src='../../images/icon_file.gif' />" );
-	        }
-	        sbHtml.append("</td>");
-	        sbHtml.append("</tr>");	
-			
-			} catch( NamingException e ) {
-				System.out.println( "[에러] " + e.getMessage() );
-			} catch( SQLException e ) {
-				System.out.println( "[에러] " + e.getMessage() );
-			} finally {
-				
-				if( rs != null ) rs.close();
-				if( pstmt != null ) pstmt.close();
-				if( conn != null ) conn.close();
-			}
-
-%>
-	
-	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -126,12 +34,152 @@
 		</div>	
 		
 		<!--게시판-->
-<table class="board_list">
-    <tr>
-        <%= sbHtml.toString() %>
-    </tr>
-</table>
+		<table class="board_list">
+		<tr>
+			<td width="20%" class="last2">
+				<div class="board">
+					<table class="boardT">
+					<tr>
+						<td class='boardThumbWrap'>
+							<div class='boardThumb'>
+								<a href="board_view1.jsp"><img src="../../upload/607927_1_thumb1.jpg" border="0" width="100%" /></a>
+							</div>																		
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class='boardItem'>	
+								<strong>제주 올레길 좋아...</strong>
+								<img src="../../images/icon_new.gif" alt="NEW">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'><span class="bold_blue">여행자</span></div></td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'>2016.03.02 <font>|</font> Hit 329</div></td>
+					</tr>
+					</table>
+				</div>
+			</td>
 
+			<td width="20%" class="last2">
+				<div class="board">
+					<table class="boardT">
+					<tr>
+						<td class='boardThumbWrap'>
+							<div class='boardThumb'>
+								<a href="board_view1.jsp"><img src="../../upload/607927_1_thumb1.jpg" border="0" width="100%" /></a>
+							</div>																		
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class='boardItem'>	
+								<strong>제주 올레길 좋아...</strong>
+								<img src="../../images/icon_new.gif" alt="NEW">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'><span class="bold_blue">여행자</span></div></td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'>2016.03.02 <font>|</font> Hit 329</div></td>
+					</tr>
+					</table>
+				</div>
+			</td>
+			<td width="20%" class="last2">
+				<div class="board">
+					<table class="boardT">
+					<tr>
+						<td class='boardThumbWrap'>
+							<div class='boardThumb'>
+								<a href="board_view1.jsp"><img src="../../upload/607927_1_thumb1.jpg" border="0" width="100%" /></a>
+							</div>																		
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class='boardItem'>	
+								<strong>제주 올레길 좋아...</strong>
+								<img src="../../images/icon_new.gif" alt="NEW">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'><span class="bold_blue">여행자</span></div></td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'>2016.03.02 <font>|</font> Hit 329</div></td>
+					</tr>
+					</table>
+				</div>
+			</td>
+			<td width="20%" class="last2">
+				<div class="board">
+					<table class="boardT">
+					<tr>
+						<td class='boardThumbWrap'>
+							<div class='boardThumb'>
+								<a href="board_view1.jsp"><img src="../../upload/607927_1_thumb1.jpg" border="0" width="100%" /></a>
+							</div>																		
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class='boardItem'>	
+								<strong>제주 올레길 좋아...</strong>
+								<img src="../../images/icon_new.gif" alt="NEW">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'><span class="bold_blue">여행자</span></div></td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'>2016.03.02 <font>|</font> Hit 329</div></td>
+					</tr>
+					</table>
+				</div>
+			</td>
+			<td width="20%" class="last2">
+				<div class="board">
+					<table class="boardT">
+					<tr>
+						<td class='boardThumbWrap'>
+							<div class='boardThumb'>
+								<a href="board_view1.jsp"><img src="../../upload/607927_1_thumb1.jpg" border="0" width="100%" /></a>
+							</div>																		
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class='boardItem'>	
+								<strong>제주 올레길 좋아...</strong>
+								<img src="../../images/icon_new.gif" alt="NEW">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'><span class="bold_blue">여행자</span></div></td>
+					</tr>
+					<tr>
+						<td><div class='boardItem'>2016.03.02 <font>|</font> Hit 329</div></td>
+					</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		</table>
+
+		<div class="btn_area">
+			<div class="align_right">		
+				<input type="button" value="쓰기" class="btn_write btn_txt01" style="cursor: pointer;" onclick="location.href='board_write1.jsp'" />
+			</div>
+		</div>
 		<!--//게시판-->			
   	</div>
 </div>

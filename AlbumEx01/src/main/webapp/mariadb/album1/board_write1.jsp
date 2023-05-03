@@ -8,27 +8,45 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/board_write.css">
-</head>
 <script type="text/javascript">
 	window.onload = function() {
 		document.getElementById( 'wbtn' ).onclick = function() {
-			//alert( 'click' );
-			if( document.wfrm.info.checked == false ){
-				alert( '동의하셔야 합니다' );
+			if( document.wfrm.info.checked == false ) {
+				alert( '동의하셔야 합니다.' );
 				return false;
 			}
-			if( document.wfrm.subject.value.trim() == '' ){
-				alert( '제목을 입력하셔야 합니다');
+			if( document.wfrm.writer.value.trim() == '' ) {
+				alert( '글쓴이를 입력하셔야 합니다.' );
 				return false;
 			}
-			if( document.wfrm.writer.value.trim() == '' ){
-				alert( '글쓴이를 입력하셔야 합니다');
+			if( document.wfrm.subject.value.trim() == '' ) {
+				alert( '제목을 입력하셔야 합니다.' );
 				return false;
 			}
-			 document.wfrm.submit();
+			if( document.wfrm.password.value.trim() == '' ) {
+				alert( '비밀번호를 입력하셔야 합니다.' );
+				return false;
+			}
+			if( document.wfrm.upload.value.trim() == '' ) {
+				alert( '이미지파일을 입력하셔야 합니다.' );
+				return false;
+			} else {
+				//파일명에서 확장 분리해서 출력
+				const ext = document.wfrm.upload.value.trim().split('.');
+				//alert( ext[ ext.length-1 ])
+				if(ext[ ext.length-1 ] !='jpg' 
+						&& ext[ ext.length-1 ] !='png' 
+						&& ext[ ext.length-1 ] !='gif'){
+					alert('이미지파일을 입력하셔야 합니다.');
+					return false;
+				}
+			}
+			document.wfrm.submit();
 		};
 	};
 </script>
+</head>
+
 <body>
 <!-- 상단 디자인 -->
 <div class="contents1"> 

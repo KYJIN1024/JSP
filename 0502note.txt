@@ -1,0 +1,49 @@
+MariaDB [board]> select max(seq) from album_board1 where seq < 2;
+
+select seq, subject from album_board1 where seq = (select max(seq) from album_board1 where seq <2);
+//이전글
+
+MariaDB [board]> select min(seq) from album_board1 where seq > 2;
+//다음글
+
+개발환경
+	window - jdk - apache-tomcat -IDE(eclipse.. )
+
+-> 배포(deployment)
+
+서비스환경
+	window - jdk - apache tomcat
+
+docynebt root
+D:\JAVA\apache-tomcat-9.0.74-windows-x64\apache-tomcat-9.0.74\webapps\root\*.jsp
+
+[새로운 웹앱 만들기]
+D:\JAVA\apache-tomcat-9.0.74-windows-x64\apache-tomcat-9.0.74\webapps\새로운 디렉토리명 생성
+
+D:\JAVA\apache-tomcat-9.0.74-windows-x64\apache-tomcat-9.0.74\webapps\새로운 디렉토리명\WEB-INF 폴더만들고 xml파일 이전
+
+D:\JAVA\apache-tomcat-9.0.74-windows-x64\apache-tomcat-9.0.74\webapps\새로운 디렉토리명\*.jsp 생성
+
+1. 라이브러리 이전
+2. 설정파일 이전
+3. beans
+		*버전확인-서비스/개발jdk 버전확인
+4. 이미지/css/js
+5. *.jsp
+
+war(web archiver)
+
+
+form.do 	FormServlet
+form_ok.do FormOkServlet
+
+gugudan.do  gugudanServlet	   시작단 ~ 끝단
+gugudan_ok.do GugudanOkServlet 구구단
+
+
+
+
+
+
+
+
