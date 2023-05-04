@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="model1.*" %>
+<%@ page import="model1.BoardTO" %>
+<%@ page import="model1.BoardListTO" %>
+<%@ page import="model1.BoardDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%
@@ -114,34 +116,41 @@
 				
 <%
 	
-	if( startBlock == 1 ){
-		out.println("<span><a>&lt;&lt;</a></span>");
-	} else {
-		out.println("<span><a href='board_list1.jsp?cpage=" + ( startBlock -blockPerPage) + "'>&lt;</a></span>");
+		if (cpage == 1) {
+		    out.println("<span><a>&lt;&lt;</a></span>");
+		} else {
+		    out.println("<span><a href='board_list1.jsp?cpage=" + (cpage - 1) + "'>&lt;&lt;</a></span>");
+		}
 		
-	}
-
-
-	if( cpage == 1 ){
-		out.println("<span><a>&lt;&lt;</a></span>");
-	} else {
-		out.println("<span><a href='board_list1.jsp?cpage=" + ( cpage-1) + "'>&lt;</a></span>");
+		if (startBlock == 1) {
+		    out.println("<span><a>&lt;</a></span>");
+		} else {
+		    out.println("<span><a href='board_list1.jsp?cpage=" + (startBlock - blockPerPage) + "'>&lt;</a></span>");
+		}
 		
-	}
-
-
-	out.println("&nbsp;&nbsp;");
-	
-	
-	 for (int i = startBlock; i <= endBlock; i++) {
-	        if (cpage == i) {
-	            out.println("<span><a>[" + i + "]</a></span>");
-	        } else {
-	            out.println("<span><a href='board_list1.jsp?cpage=" + i + "'>" + i + "</a></span>");
-	        }
-	    }
-	            
-    		
+		out.println("&nbsp;&nbsp;");
+		
+		for (int i = startBlock; i <= endBlock; i++) {
+		    if (cpage == i) {
+		        out.println("<span><a>[" + i + "]</a></span>");
+		    } else {
+		        out.println("<span><a href='board_list1.jsp?cpage=" + i + "'>" + i + "</a></span>");
+		    }
+		}
+		
+		out.println("&nbsp;&nbsp;");
+		
+		if (endBlock == totalPage) {
+		    out.println("<span><a>&gt;</a></span>");
+		} else {
+		    out.println("<span><a href='board_list1.jsp?cpage=" + (endBlock + 1) + "'>&gt;</a></span>");
+		}
+		
+		if (cpage == totalPage) {
+		    out.println("<span><a>&gt;&gt;</a></span>");
+		} else {
+		    out.println("<span><a href='board_list1.jsp?cpage=" + (cpage + 1) + "'>&gt;&gt;</a></span>");
+		}
 
 %>				
 				&nbsp;&nbsp;

@@ -37,9 +37,13 @@ board_list1.jsp
 => model2
 
 controller(Servlet)		BoardAction(interface)
-		path=write		WriteAction			BoardTO		boardDAO
+		path=write		WriteAction			BoardTO		BoardDAO  DB
+		path=write_ok		WriteOkAction
+		path=list			ListAction
 
-
+		Board_write1.jsp
+		Board_wrtie1_ok.jsp
+		Board_list.jsp
 
 
 

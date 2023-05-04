@@ -20,7 +20,7 @@ public class ZipcodeOkAction implements Action {
 		
 		// to / dao
 		ZipcodeDAO dao = new ZipcodeDAO();
-		ArrayList<ZipcodeTO> datas = dao.listZipcode(strdong);
+		ArrayList<ZipcodeTO> datas = dao.listZipcode(strDong);
 		
 		System.out.println("갯수 :" + datas.size() );
 		

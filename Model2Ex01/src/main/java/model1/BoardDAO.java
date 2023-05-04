@@ -188,14 +188,48 @@ public class BoardDAO {
 		return to;
 
 	}
-	public void boardModifyOk() {
+	public int boardModifyOk(BoardTO to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int flag = 2;
+		
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context)initCtx.lookup( "java:comp/env" );
+			DataSource dataSource = (DataSource)envCtx.lookup( "jdbc/mariadb3" );
+			
+			conn = dataSource.getConnection();
+
+			String sql = "update board1 set subject=?, mail=?, content=? where seq=? and password=?";
+			pstmt = conn.prepareStatement( sql );
+			pstmt.setString( 1, to.getSubject() );
+			pstmt.setString( 2, to.getMail() );
+			pstmt.setString( 3, to.getContent() );
+			pstmt.setString( 4, to.getSeq() );
+			pstmt.setString( 5, to.getPassword() );
+			
+			int result = pstmt.executeUpdate();
+			if( result == 1 ) {
+				flag = 0;
+			} else if( result == 0 ) {
+				flag = 1;
+			}
+			
+		} catch( NamingException e ) {
+			System.out.println( "[에러] " + e.getMessage() );
+		} catch( SQLException e ) {
+			System.out.println( "[에러] " + e.getMessage() );
+		} finally {
+			if( pstmt != null ) try { pstmt.close(); } catch (SQLException e) {}
+			if( conn != null ) try { conn.close(); }  catch (SQLException e) {}
+		}
 
 
-
-
+		return flag;
 
 	}
-	public void boardDelete(BoardTO to) {
+	public BoardTO boardDelete(BoardTO to) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -217,6 +251,7 @@ public class BoardDAO {
 		if( pstmt != null ) try { pstmt.close();} catch(SQLException e) {}
 		if( conn != null ) try { conn.close();} catch(SQLException e) {}
 	}
+	return to;
 	}
 	public int boardDeleteOk(BoardTO to) {
 	    Connection conn = null;

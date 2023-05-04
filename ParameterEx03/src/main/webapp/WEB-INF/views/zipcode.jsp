@@ -9,7 +9,9 @@
 <body>
 Hello zipcode.jsp <br/><br/>
 <form action="controller" method="post">
-<input 
+<input type= "hidden" name="path" value="zipcode_ok" />
+동이름 <input type="text"  name="dong" />
+<input type="submit" value="동이름 검색" />
 
 </form>
 

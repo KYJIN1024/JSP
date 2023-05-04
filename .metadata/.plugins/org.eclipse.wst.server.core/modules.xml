@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <modules>
+  <module moduleId="org.eclipse.jst.jee.server:Model2Ex01" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:URLEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:Model2Ex02" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:ParameterEx02" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:InitServletEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:ParameterEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:JDBCEx03" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:JSPEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:FilterEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:Model1Ex02" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:ServletEx03" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:ServletEx02" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:ServletEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
@@ -16,4 +20,5 @@
   <module moduleId="org.eclipse.jst.jee.server:BoardEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:UploadEx01" serverId="Tomcat v9.0 Server at localhost (2)"/>
   <module moduleId="org.eclipse.jst.jee.server:WebsiteEx02" serverId="Tomcat v9.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:ParameterEx03" serverId="Tomcat v9.0 Server at localhost (2)"/>
 </modules>

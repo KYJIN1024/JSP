@@ -9,13 +9,15 @@
 	
 	sbHtml.append("<table width='800' border='1'>");
 	for( ZipcodeTO to : datas){
+		
 		sbHtml.append("<tr>");
-		sbHtml.append("	<td>" + to.getZipcode() + "</td>");
-		sbHtml.append("	<td>" + to.getSido() + "</td>");
-		sbHtml.append("	<td>" + to.getGugun() + "</td>");
-		sbHtml.append("	<td>" + to.getDong() + "</td>");
-		sbHtml.append("	<td>" + to.getRi() + "</td>");
-		sbHtml.append("	<td>" + to.getBunji() + "</td>");
+		sbHtml.append("		<td>" + to.getZipcode() + "</td>");
+		sbHtml.append("		<td>" + to.getSido() + "</td>");
+		sbHtml.append("		<td>" + to.getGugun() + "</td>");
+		sbHtml.append("		<td>" + to.getDong() + "</td>");
+		sbHtml.append("		<td>" + to.getRi() + "</td>");
+		sbHtml.append("		<td>" + to.getBunji() + "</td>");
+		sbHtml.append("		<td>" + to.getSeq() + "</td>");
 		sbHtml.append("</tr>");
 		}
 		sbHtml.append("</table>");

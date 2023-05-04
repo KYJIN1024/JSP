@@ -1,0 +1,9 @@
+
+
+우편번호
+			-> 	Action.java
+zipcode.do	->	ZipcodeAction.java		-> ZipcodeTO -> ZipcodeDAO
+zipcode_ok.do  ->  ZipcodeOkAction.java
+
+zipcode.jsp
+zipcode_ok.jsp
