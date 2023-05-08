@@ -34,7 +34,7 @@ board_write1.jsp 		->  BoardTO 	-> 	BoardDAO  -> DB
 board_write1_ok.jsp	
 board_list1.jsp
 
-=> model2
+=> model2을 이용한 설계
 
 controller(Servlet)		BoardAction(interface)
 		path=write		WriteAction			BoardTO		BoardDAO  DB
