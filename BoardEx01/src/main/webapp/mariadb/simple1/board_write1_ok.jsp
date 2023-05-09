@@ -25,7 +25,7 @@
 	String password = request.getParameter("password");
 	String content = request.getParameter("content");
 	
-	String wip = request.getRemoteAddr();
+	String wip = request.getRemoteAddr(); // ip주소 
 	/*
 	System.out.println( subject );
 	System.out.println( writer );

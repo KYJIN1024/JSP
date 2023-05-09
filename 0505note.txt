@@ -1,0 +1,73 @@
+hard coding - base
+
+model1 - 취업을 위해선 최소 모델1까지는 알고있어야함
+
+상태(값) 유지 => 로그인 => 회원관리
+로그인
+		회원에 대한 정보유지
+		-로그아웃
+		-프로그램 종료시
+
+상태(값) - 저장구역이 필요
+		page		   - 한페이지내에서 저장
+		request	   - request(include/forward)
+		session	   - 브라우저종료/session삭제
+		application	   - 톰캣종료시까지(전사이트에 공유)
+
+
+	= Hashmap
+	request.setAttribute
+		- setAttribute("키", 값)
+		- getAttribute("키")
+
+DFD
+로그인폼(login_form.jsp)
+	(id, password, 회원등급...)
+	로그인 확인(login_ok.jsp)
+			성공
+			(세션 부여)
+					-> 성공확인(login_complete.jsp)
+						    세션검사
+						    성공
+								페이지내용	
+								->로그아웃(logout_ok.jsp)
+						    실패
+								로그폼
+						    실패
+						    <-
+
+테이블명 : member1
+번호		seq		int			not null primary key auto_increment
+아이디		id		varchar(12)		not null
+비밀번호	password	varchar(12)		not null
+이름		name		varchar(12)		not null
+이메일		mail		varchar(50)
+등급		grade		char(1)		not null
+등록일		wdate		datetime		not null
+
+insert into member1 value( 0, 'tester', '1234', '이름', 'test@test.com','A', now() );
+
+//데이터베이스 테이블생성
+CREATE TABLE member1 (
+    seq INT NOT NULL PRIMARY KEY,
+    id VARCHAR(12) NOT NULL,
+    password VARCHAR(12) NOT NULL,
+    name VARCHAR(12) NOT NULL,
+    mail VARCHAR(50),
+    grade CHAR(1) NOT NULL,
+    wdate DATETIME NOT NULL
+);
+
+//데이터 추가
+INSERT INTO member1 (seq, id, password, name, mail, grade, wdate)
+VALUES (0, 'tester', '1234', '이름', 'test@test.com', 'A', NOW());
+
+
+
+
+
+		
+
+
+
+

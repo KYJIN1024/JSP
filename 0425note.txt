@@ -30,27 +30,27 @@ post
 
 1. ERD - 1개.. 테이블에 대한 컬럼..  어떤  데이터가 한글로 표현해보기 
 
-번호		seq			int				not null primary key auto_increment,
-제목		subject		varchar(150)		not null
-글쓴이	wrtier		varchar(12)		not null
-이메일	mail			varchar(50)		
-비밀번호	password		varchar(12)		not null
-내용		content		varchar(2000)		
-조회수	hit			int				not null
-아이피	wip			varchar(15)		not null
-등록일	wdate		datetime			not null
+번호			seq			int			not null primary key auto_increment,
+제목			subject		varchar(150)	not null
+글쓴이			wrtier		varchar(12)		not null
+이메일			mail			varchar(50)		
+비밀번호		password		varchar(12)		not null
+내용			content		varchar(2000)		
+조회수			hit			int			not null
+아이피			wip			varchar(15)		not null
+등록일			wdate			datetime		not null
 
 
 create table board1 (
-seq			int				not null primary key auto_increment,
-subject		varchar(150)		not null,
+seq			int			not null primary key auto_increment,
+subject		varchar(150)	not null,
 wrtier		varchar(12)		not null,
 mail			varchar(50),		
 password		varchar(12)		not null,
 content		varchar(2000),		
-hit			int				not null,
+hit			int			not null,
 wip			varchar(15)		not null,
-wdate		datetime			not null
+wdate			datetime		not null
 );
 
 데이터베이스명: board
@@ -58,7 +58,7 @@ wdate		datetime			not null
 암호: 1234
 
 
-insert into board1 values ( 0, '제목', '이름', 'test@test.com', '1234, '내용', 0, '000.0000.0000');
+INSERT INTO board1 VALUES (0, '제목', '이름', 'test@test.com', '1234', '내용', 0, '000.0000.0000', NOW());
 
 페이지 흐름 + 데이터의 흐름 
 

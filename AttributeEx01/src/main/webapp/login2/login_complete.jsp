@@ -24,7 +24,7 @@ login_complete.jsp <br />
 <%
 	} else if(flag ==1  ){
 %>
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
