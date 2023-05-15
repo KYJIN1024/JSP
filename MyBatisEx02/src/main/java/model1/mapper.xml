@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis1"> 
+
+	<!-- xml처럼 sql문 작성 -->
+	<select id="selectparamone1" parameterType="String"  resultType="model1.EmpTO" >
+			select empno, ename, job, mgr, hirddate, sal, comm, deptno
+			from emp
+			where ename=#{ename}
+	</select>
+	
+	<select id="selectparamone2" resultType="model1.EmpTO" >
+			select empno, ename, job, mgr, hirddate, sal, comm, deptno
+			from emp
+			where ename=#{ename}
+	</select>
+	
+	
+
+	
+</mapper> 

@@ -19,20 +19,20 @@
 	String mail = "";
 	if( !request.getParameter("mail1").equals("") 
 			&& !request.getParameter("mail2").equals("")){
-	 mail = request.getParameter("mail1") + "@" + request.getParameter("mail2");
+	 mail = request.getParameter("mail1") + "@" + request.getParameter("mail2");  // 메일처리 알고리즘
 	}
 	
 	String password = request.getParameter("password");
 	String content = request.getParameter("content");
 	
 	String wip = request.getRemoteAddr(); // ip주소 
-	/*
-	System.out.println( subject );
+	
+	/* System.out.println( subject );
 	System.out.println( writer );
 	System.out.println( mail );
 	System.out.println( password );
-	System.out.println( content );
-	*/
+	System.out.println( content ); */
+	
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null; 

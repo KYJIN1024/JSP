@@ -1,0 +1,39 @@
+java/jsp 프레임워크
+(프레임워크 / 라이브러리)
+
+프레임워크
+		프리젠테이션  티어
+		비즈니스 티어
+		데이터 티어
+				spl mapper 프레임워크 => myBatis
+				java + sql => java / sql
+
+				어느위치에 어느걸 넣고 설정이 중요한 파트
+				*프레임워크 위치 잘알고 있어야함
+				*xml
+					log4j.xml
+					myBatisConfig.xml
+					mapper.xml
+
+
+게시판에 적용할때 
+
+[model1]
+	client	jsp	dao	mybatis	db
+[model2]
+	client	servlet	xxxaction	dao	mybatis
+
+mapper file
+	1개	-여러개 ...(테이블/ 프로그램 종류)
+
+1. xml
+2. java 
+
+코드작성1. emp테이블 - 사원명을 조회 (시작글자로 조회)하는 jsp작성
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	window.onload = function() {
 		document.getElementById( 'wbtn' ).onclick = function() {
-			alert('click')
+			//alert('click')
 			if( document.wfrm.info.checked == false ){
 				alert('동의하셔야 합니다');
 				return false;
@@ -39,7 +39,7 @@
 </div>
 <div class="con_menu"></div>
 <div class="con_txt">
-	<form action="board_write1_ok" method="post" name="wfrm">
+	<form action="board_write1_ok.jsp" method="post" name="wfrm">
 		<div class="contents_sub">	
 			<!--게시판-->
 			<div class="board_write">

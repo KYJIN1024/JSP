@@ -1,0 +1,69 @@
+
+회원관리 흐림(DFD -기능)
+
+
+=> 벤치마킹
+로그인전
+	 회원가입
+		  *아이디 중복검사
+		  *회원가입 인증(SMS /EMAIL)
+	 로그인
+		  *자체 로그인
+			   db 검사 후 로그인
+			     아이디 / 비밀번호 찾기
+		   *소셜 로그인
+			    구글 / 카카오 / 네이버 ...
+로그인 후 
+		로그아웃
+		회원정보
+			  회원정보 수정
+			  비밀번호 변경
+					* 주기적 변경 유도
+		회원탈퇴
+
+		* 관리자 기능(포트 변경)
+			 특정 로그인 아이디/ 패스워드 입력시 관리자모드로 로그인
+
+
+게시판
+회원관리
+---------
+
+view page 변화
+java + html
+=> el + jstl + html 
+	el(expression language)
+	expression => <% : out.println()
+	상태저장소.. pageContext/ request / session
+	서버상태 .. param / header
+
+jstl <= 표준 <= custom tag lib
+
+1.라이브러리
+2.taglib 디렉티브
+
+
+1. maven project
+2. Dynamic web project => maven project(*)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

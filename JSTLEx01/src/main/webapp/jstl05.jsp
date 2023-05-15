@@ -19,7 +19,7 @@
 		<c:out value="$ { country }" />는 더 춥다 <br />
 	</c:when>
 	<c:otherwise>
-		안줍다<br />
+		안춥다<br />
 	</c:otherwise>
 </c:choose>
 	

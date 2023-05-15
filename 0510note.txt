@@ -1,0 +1,26 @@
+mybatis
+sql mapper framework
+
+mybatis
+	lib
+		jdbc드라이버
+		mybatis 프레임워크
+		로그출력
+			  작업진행에 로그를 출력하는 프레임워크
+
+    설정파일
+		데이터베이스 접속
+		SQL mapper
+
+Dynamic Web Project => Maven(grable) project 
+로 배치하는것이 더 편리함
+
+ename을 통해서 사원정보를 검색하는 Mybatis Project 생성
+
+프로젝트를 새롭게 생성한후에..
+
+우편번호 검색기만들기..model1
+
+zipcodeTO
+zipcodeDAO
+DAO

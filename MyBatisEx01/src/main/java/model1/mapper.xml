@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis1"> 
+
+	<!-- xml처럼 sql문 작성 -->
+	
+	<select id="selectlist" resultType="model1.DeptTO">
+			select deptno, dname, loc
+			from dept
+			where deptno=10
+	</select>
+	
+	
+	<select id="selectone" resultType="model1.DeptTO">
+			select deptno, dname, loc
+			from dept
+			where deptno=10
+	</select>
+	
+	<select id="selectparamone1" parameterType="String"  resultType="model1.DeptTO" >
+			select deptno, dname, loc
+			from dept
+			where deptno=#{deptno}
+	</select>
+	
+	<select id="selectparamone3" resultType="model1.DeptTO" >
+			select deptno, dname, loc
+			from dept
+			where deptno=#{deptno}
+	</select>
+	
+	<insert id="insert1" parameterType="model1.DeptTO">
+		insert into dept2 ( deptno, dname, loc )
+		values ( #{deptno}, #{dname}, #{loc} )
+	</insert>
+	
+	<update id="update1" parameterType="model1.DeptTO">
+		update dept2
+		set dname=#{dname}
+		where deptno=#{deptno}
+	</update>
+	
+	<delete id="delete1" parameterType="model1.DeptTO">
+		delete from dept2
+		where deptno=#{deptno}
+	</delete>
+</mapper>
+	
+	

@@ -51,7 +51,7 @@
             sbHtml.append("<td>" + seq + "</td>");
             
             sbHtml.append("<td class='left'>");
-            sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>");
+            sbHtml.append("<a href='board_view1.jsp?seq=" + seq + "'>" + subject + "</a>"); // boardview를 클릭했을때 seq번호를 가지고가라,,
             if( wgap == 0){
             sbHtml.append("&nbsp;<img src='../../images/icon_new.gif' alt='NEW'>");
             }
